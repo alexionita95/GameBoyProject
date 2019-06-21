@@ -1,0 +1,155 @@
+<html>
+<title>Gameboy API Docs</title>
+<body>
+<style>
+a
+{
+color: blue;
+text-decoration: none;
+}
+</style>
+<table border=1 cellspacing=0 cellpadding=5 height=100 style="position:fixed; top:10; left:10;">
+<th bgcolor="#27AEE3">Menu</th>
+<tr><td><a href="#driver">Display Driver</a></td>
+<tr><td><a href="#shape">Shape Renderer</a></td>
+<tr><td><a href="#text">Text Renderer</a></td>
+<tr><td><a href="#input">Input Contoller</a></td>
+</table>
+<center>
+<table border=0 cellspacing=0 cellpadding=10 width=1000 >
+<th>Gameboy Graphics and Controls API Documentation</th>
+</table>
+<br/>
+<table border=1 cellspacing=0 cellpadding=10 width=1000 id="driver">
+<tr>
+<th colspan=2 bgcolor="#27AEE3">DisplayDriver class (global Display)</th>
+<tr>
+<td>void init()</td> <td>Initializes the display driver</td>
+<tr>
+<td>void setRotation(uint8_t m)</td><td>Sets the display rotation to the value of the parameter.<br> Possible values are: 0, 1, 2 or 3</td>
+
+<tr>
+<td>void spi_begin()</td><td>Begins SPI communication</td>
+<tr>
+<td>void spi_end()</td><td>Ends SPI communication</td>
+<tr>
+<td>void writecommand(uint8_t c)</td><td>Writes a command to the display driver</td>
+<tr>
+<td>void writedata(uint8_t d)</td><td>Writes data to the display memory</td>
+<tr>
+<td>void setWindow(int32_t xs, int32_t ys, int32_t xe, int32_t ye)</td><td>Sets a window of memory to write in</td>
+<tr>
+<td>void writeBlock(uint16_t color, uint32_t repeat)</td><td>Writes a block of data in memory</td>
+<tr>
+<td>int16_t width()</td><td>Returns display width based on current rotation</td>
+<tr>
+<td>int16_t height()</td><td>Returns display height based on current rotation</td>
+
+</table>
+
+<br/>
+
+<table border=1 cellspacing=0 cellpadding=10 width=1000 id="shape">
+<tr>
+<th colspan=2 bgcolor="#27AEE3">ShapeRenderer class (global Shape)</th>
+<tr>
+<td>void drawPixel(int32_t x, int32_t y, uint32_t color)</td><td>Draws a pixel to the screen at the specified coordinates with the specified color</td>
+<tr>
+<td>void fillScreen(uint32_t color)</td><td>Fills the screen with the specified color</td>
+<tr>
+<td>void fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint32_t color)</td><td>Fills a rectangle with the specified color, starting from the specified x,y with the specified width,height</td>
+<tr>
+<td>void drawRect(int32_t x, int32_t y, int32_t w, int32_t h, uint32_t color)</td><td>Draws a rectangle with the specified color, starting from the specified x,y with the specified width,height</td>
+<tr>
+<td>void drawFastHLine(int32_t x, int32_t y, int32_t w, uint32_t color)</td><td>Draws a horizontal line starting from the specified x,y with the specified width and color</td>
+<tr>
+<td>void drawFastVLine(int32_t x, int32_t y, int32_t h, uint32_t color)</td><td>Draws a vertical line starting from the specified x,y with the specified height and color</td>
+
+</table>
+
+<br/>
+
+<table border=1 cellspacing=0 cellpadding=10 width=1000 id="text">
+<tr>
+<th colspan=2 bgcolor="#27AEE3">TextRenderer class (global Text)</th>
+<tr>
+<td>void setTextSize(uint8_t s)</td><td>Sets the text size. <br/> Possible values: 1-5</td>
+<tr>
+<td>void setTextFont(uint8_t f)</td><td>Sets the current font <br/> Possible values: 1,2,4,6</td>
+<tr>
+<td>void setTextColor(uint16_t c)</td><td>Sets the current text color</td>
+<tr>
+<td>void setTextColor(uint16_t c, uint16_t b)</td><td>Sets the current text color including the background</td>
+<tr>
+<td>int16_t  drawNumber(long long_num, int32_t poX, int32_t poY, uint8_t font)</td><td>Draws a number with the specified font at the specified position</td>
+<tr>
+<td>int16_t  drawNumber(long long_num, int32_t poX, int32_t poY)</td><td>Draws a number with the current font at the specified position</td>
+<tr>
+<td>int16_t  drawFloat(float floatNumber, uint8_t decimal, int32_t poX, int32_t poY, uint8_t font)</td><td>Draws a float with the specified font at the specified position</td>
+<tr>
+<td>int16_t  drawFloat(float floatNumber, uint8_t decimal, int32_t poX, int32_t poY)</td><td>Draws a number with the current font at the specified position</td>
+<tr>
+<td>int16_t  drawString(const char *string, int32_t poX, int32_t poY, uint8_t font)</td><td>Draws a string with the specified font at the specified position</td>
+<tr>
+<td>int16_t  drawString(const char *string, int32_t poX, int32_t poY)</td><td>Draws a string with the current font at the specified position</td>
+<tr>
+<td>int16_t  drawCenterString(const char *string, int32_t dX, int32_t poY, uint8_t font)</td><td>Draws a center string with the specified font at the specified position</td>
+<tr>
+<td>int16_t  drawRightString(const char *string, int32_t dX, int32_t poY, uint8_t font)</td><td>Draws a center string with the current font at the specified position</td>
+<tr>
+<td>int16_t  drawString(const String& string, int32_t poX, int32_t poY, uint8_t font)</td><td>Draws a string with the specified font at the specified position</td>
+<tr>
+<td>int16_t  drawString(const String& string, int32_t poX, int32_t poY)</td><td>Draws a string with the current font at the specified position</td>
+<tr>
+<td>int16_t  drawCenterString(const String& string, int32_t dX, int32_t poY, uint8_t font)</td><td>Draws a center string with the specified font at the specified position</td>
+<tr>
+<td>int16_t  drawRightString(const String& string, int32_t dX, int32_t poY, uint8_t font)</td><td>Draws a string at right with the specified font at the specified position</td>
+<tr>
+<td>int16_t  textWidth(const char *string, uint8_t font)</td><td>Returns the width of a string using the given font</td>
+<tr>
+<td>int16_t  textWidth(const char *string)</td><td>Returns the width of a string using the current font</td>
+<tr>
+<td>int16_t  textWidth(const String& string, uint8_t font)</td><td rowspan=2>Same as the others, different data types</td>
+<tr>
+<td>int16_t  textWidth(const String& string)</td>
+<tr>
+<td>int16_t  fontHeight(int16_t font)</td><td>Returns the font height for the specified font</td>
+<tr>
+<td>int16_t  fontHeight(void)</td><td>Returns the font height for the current font</td>
+<tr>
+<td>int16_t  drawChar(uint16_t uniCode, int32_t x, int32_t y, uint8_t font)</td><td>Draws a char at the specified position with the specified font</td>
+<tr>
+<td>int16_t  drawChar(uint16_t uniCode, int32_t x, int32_t y)</td><td>Draws a char at the specified position with the current font</td>
+<tr>
+<td>void drawChar(int32_t x, int32_t y, uint16_t c, uint32_t color, uint32_t bg, uint8_t size)</td><td>Draws a char at the specified position with the specified color, background and size</td>
+<tr>
+<td>uint16_t decodeUTF8(uint8_t *buf, uint16_t *index, uint16_t remaining)</td><td>Decodes an UTF8 string</td>
+<tr>
+<td>uint16_t decodeUTF8(uint8_t c)</td><td>Decodes an UTF8 char</td>
+</table>
+<br/>
+<table border=1 cellspacing=0 cellpadding=10 width=1000 id="input">
+<tr>
+<th colspan=2 bgcolor="#27AEE3">InputController class (global Controls)</th>
+<tr>
+
+<td>void readInput()</td><td>Pools the controls</td>
+<tr>
+<td>int getBtn1()</td><td>Returns the value for the Red button</td>
+<tr>
+<td>int getBtn2()</td><td>Returns the value for the Black button</td>
+<tr>
+<td>int getPush()</td><td>Returns the value for the push button on the Joystick</td>
+<tr>
+<td>int getUp()</td><td>Returns 1 if the joystick is in up position</td>
+<tr>
+<td>int getDown()</td><td>Returns 1 if the joystick is in up position</td>
+<tr>
+<td>int getLeft()</td><td>Returns 1 if the joystick is in down position</td>
+<tr>
+<td>int getRight()</td><td>Returns 1 if the joystick is in right position</td>
+
+</table>
+</center>
+</body>
+</html>
